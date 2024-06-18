@@ -13,8 +13,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import tech.sourced.enry.*;
-
 public class DirectoryUtils {
     public static String[] getMsPaths(String root){
         File[] directories = filterDirectories(root);
@@ -62,26 +60,7 @@ public class DirectoryUtils {
             hasJava = paths.anyMatch(p -> {
                 File file = p.toFile();
                 // only try to detect files
-                if (!file.isDirectory()) {
-                    // try only by extension first
-                    Guess lang = Enry.getLanguageByExtension(file.getName());
-                    if (lang.language.equals("Java")) {
-                        if (lang.safe) {
-                            return true;
-                        } else {
-                            try {
-                                // try by content if needed
-                                lang = Enry.getLanguageByContent(file.getName(), Files.readAllBytes(p));
-                                if (lang.language.equals("Java") && lang.safe) {
-                                    return true;
-                                }
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-                }
-                return false;
+                return !file.isDirectory() && file.getName().endsWith(".java");
             });
         } catch (IOException e) {
             e.printStackTrace();

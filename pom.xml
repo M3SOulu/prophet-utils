@@ -171,11 +171,11 @@
 		</dependency>
 
         <!-- https://mvnrepository.com/artifact/tech.sourced/enry-java -->
-        <dependency>
+        <!-- dependency>
             <groupId>tech.sourced</groupId>
             <artifactId>enry-java</artifactId>
-            <version>2.1.0</version>
-        </dependency>
+            <version>2.1.0</version >
+        </dependency -->
 
     </dependencies>
     
